@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -20,6 +20,8 @@ const ThreeBackground = dynamic(() => import("@/components/ThreeBackground"), {
 });
 
 export default function Home() {
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
   useEffect(() => {
     AOS.init({
       duration: 880,
@@ -27,11 +29,16 @@ export default function Home() {
       once: true,
       offset: 50,
     });
+
+    // Check screen height after mount
+    if (typeof window !== "undefined") {
+      setIsLargeScreen(window.screen.height > 1000);
+    }
   }, []);
 
   return (
     <main className="relative w-full overflow-hidden">
-      {window.screen.height > 1000 && <ThreeBackground />}
+      {isLargeScreen && <ThreeBackground />}
       <Navbar />
       <Hero />
       <Marquee />
