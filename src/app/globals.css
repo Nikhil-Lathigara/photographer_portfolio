@@ -19,12 +19,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    position: relative;
   }
   body {
     background-color: var(--color-ink);
     color: var(--color-paper);
     font-family: var(--font-fd);
     overflow-x: hidden;
+    position: relative;
   }
 }
 
@@ -35,6 +37,17 @@
 }
 .animate-scroll-pulse {
   animation: scrollPulse 2s 1.6s infinite;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes marquee {

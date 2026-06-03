@@ -61,24 +61,32 @@ export default function Hero() {
         style={mounted ? { y: textY, opacity: textOpacity } : undefined}
       >
         <p className="font-fm text-[10px] tracking-[0.28em] text-gold uppercase mb-4 opacity-0 animate-[fadeUp_0.8s_0.4s_forwards]">
-          Visual Artist & Photography - Est. 2014
+          Wedding, Portrait & Editorial Photography
         </p>
         <h1 className="font-fd text-[clamp(56px,8.5vw,116px)] font-light leading-[0.93] tracking-tight mb-7 opacity-0 animate-[fadeUp_0.9s_0.6s_forwards]">
-          Light is
+          Moments in
           <br />
-          <em className="italic text-gold block">the medium.</em>
+          <em className="italic text-gold block">their best light.</em>
         </h1>
         <p className="font-fd text-[17px] font-light text-mist leading-relaxed max-w-100 opacity-0 animate-[fadeUp_0.8s_0.85s_forwards]">
-          Capturing the world between the blinks - editorial, commercial, and
-          cinematic photography that breathes.
+          I create warm, cinematic photographs and films for weddings, portraits,
+          celebrations, and brands across Mumbai and beyond.
         </p>
-        <a
-          href="#portfolio"
-          className="mt-9 inline-flex items-center gap-3.5 font-fm text-[10px] tracking-[0.22em] uppercase text-paper no-underline border-b border-paper/25 pb-2 opacity-0 animate-[fadeUp_0.8s_1.1s_forwards] transition-colors duration-300 hover:text-gold hover:border-gold cursor-hover"
-        >
-          View Portfolio{" "}
-          <span className="inline-block w-6.5 h-px bg-current relative after:content-[''] after:absolute after:right-0 after:-top-0.75 after:w-1.5 after:h-1.75 after:border-t after:border-r after:border-current after:rotate-45" />
-        </a>
+        <div className="mt-9 flex flex-wrap items-center gap-5 opacity-0 animate-[fadeUp_0.8s_1.1s_forwards]">
+          <a
+            href="/gallery"
+            className="inline-flex items-center gap-3.5 font-fm text-[10px] tracking-[0.22em] uppercase text-paper no-underline border-b border-paper/25 pb-2 transition-colors duration-300 hover:text-gold hover:border-gold cursor-hover"
+          >
+            View Gallery{" "}
+            <span className="inline-block w-6.5 h-px bg-current relative after:content-[''] after:absolute after:right-0 after:-top-0.75 after:w-1.5 after:h-1.75 after:border-t after:border-r after:border-current after:rotate-45" />
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center bg-gold text-ink px-6 py-3 font-fm text-[10px] tracking-[0.22em] uppercase no-underline transition-transform duration-200 hover:bg-cream hover:-translate-y-0.5 cursor-hover"
+          >
+            Book a Shoot
+          </a>
+        </div>
       </motion.div>
 
       <motion.div
@@ -140,19 +148,6 @@ export default function Hero() {
         </span>
         <div className="w-[1px] h-[52px] bg-gradient-to-b from-gold to-transparent animate-scroll-pulse" />
       </div>
-
-      <style jsx>{`
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(22px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   );
 }

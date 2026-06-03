@@ -8,12 +8,13 @@ import PortfolioMedia from "@/components/shared/PortfolioMedia";
 
 const swipeConfidenceThreshold = 7000;
 
-export default function Portfolio() {
+export default function Portfolio({ variant = "showcase" }) {
   const [filter, setFilter] = useState("all");
   const [lightboxImg, setLightboxImg] = useState(null);
   const [mobileIndex, setMobileIndex] = useState(0);
+  const isGridVariant = variant === "grid";
 
-  const filters = ["all", "portrait", "landscape", "editorial", "video"];
+  const filters = ["all", "weddings", "portraits", "events", "fashion", "videos"];
   const filteredItems = portfolioItems.filter((item) => filter === "all" || filter === item.cat);
 
   const getCircularOffset = (index) => {
@@ -53,15 +54,18 @@ export default function Portfolio() {
 
   return (
     <>
-      <section id="portfolio" className="relative z-10 py-27.5 px-7 md:px-14 bg-[#0b0a08]">
+      <section id="gallery" className="relative z-10 py-27.5 px-7 md:px-14 bg-[#0b0a08]">
         <div className="flex items-end justify-between mb-16 flex-wrap gap-6">
           <div data-aos="fade-up">
             <p className="font-fm text-[10px] tracking-[0.3em] text-gold uppercase mb-3.5">
-              Selected Work
+              Gallery
             </p>
             <h2 className="font-fd text-[clamp(34px,4.5vw,68px)] font-light leading-none tracking-tight">
-              The <em className="italic text-gold">portfolio</em>
+              Stories in <em className="italic text-gold">photographs</em>
             </h2>
+            <p className="mt-5 max-w-[560px] font-fd text-[17px] font-light leading-[1.75] text-mist">
+              A selection of weddings, portraits, events, fashion stories, and short films.
+            </p>
           </div>
           <ul className="flex gap-5 flex-wrap list-none" data-aos="fade-up" data-aos-delay="80">
             {filters.map((f) => (
@@ -85,6 +89,7 @@ export default function Portfolio() {
           </ul>
         </div>
 
+        {!isGridVariant && (
         <div className="md:hidden" data-aos="fade-up">
           <div className="relative h-[480px] rounded-[24px] overflow-hidden border border-gold/20 bg-[radial-gradient(circle_at_50%_72%,rgba(201,168,76,0.12),transparent_62%)]">
             <div className="absolute inset-x-0 top-5 text-center font-fm text-[9px] tracking-[0.24em] text-mist uppercase">
@@ -124,7 +129,7 @@ export default function Portfolio() {
                         : undefined
                     }
                     onClick={() => {
-                      if (isActive && item.cat !== "video") {
+                      if (isActive && item.cat !== "videos") {
                         setLightboxImg(item.img);
                         return;
                       }
@@ -179,7 +184,56 @@ export default function Portfolio() {
             </div>
           )}
         </div>
+        )}
 
+        {isGridVariant ? (
+          <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-5 md:gap-6" data-aos="fade-up">
+            <AnimatePresence mode="popLayout">
+              {filteredItems.map((item, index) => (
+                <motion.article
+                  key={item.id}
+                  layout
+                  initial={{ opacity: 0, y: 18, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 12, scale: 0.98 }}
+                  transition={{ duration: 0.34, delay: Math.min(index * 0.025, 0.16) }}
+                  className={cn(
+                    "group relative overflow-hidden border border-gold/15 bg-[#11100d] cursor-hover",
+                    item.cat === "videos" ? "aspect-[4/5] sm:aspect-[4/3]" : "aspect-[4/5]"
+                  )}
+                >
+                  {item.cat === "videos" ? (
+                    <>
+                      <PortfolioMedia
+                        item={item}
+                        imageSizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        videoClassName="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-105"
+                      />
+                      <div className="absolute top-3 right-3 md:top-5 md:right-5 w-9 h-9 md:w-[44px] md:h-[44px] border border-paper/60 rounded-full flex items-center justify-center pointer-events-none bg-ink/25 backdrop-blur-sm after:content-[''] after:border-l-[10px] md:after:border-l-[12px] after:border-l-paper after:border-t-6 md:after:border-t-7 after:border-t-transparent after:border-b-6 md:after:border-b-7 after:border-b-transparent after:ml-0.5" />
+                    </>
+                  ) : (
+                    <PortfolioMedia
+                      item={item}
+                      imageSizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                      imageClassName="object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-105 cursor-none"
+                      onImageClick={() => setLightboxImg(item.img)}
+                    />
+                  )}
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent opacity-95 sm:opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none" />
+                  <div className="absolute left-0 right-0 bottom-0 p-3 sm:p-5 md:p-6 pointer-events-none">
+                    <span className="font-fd text-[17px] sm:text-[22px] md:text-[24px] font-light italic text-paper block leading-tight">
+                      {item.title}
+                    </span>
+                    <span className="font-fm text-[7px] sm:text-[8px] tracking-[0.18em] sm:tracking-[0.25em] text-gold uppercase mt-1.5 sm:mt-2 block">
+                      {item.catLabel} - {item.year}
+                    </span>
+                  </div>
+                </motion.article>
+              ))}
+            </AnimatePresence>
+          </div>
+        ) : (
         <div className="hidden md:block columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
           <AnimatePresence>
             {filteredItems.map((item) => (
@@ -192,7 +246,7 @@ export default function Portfolio() {
                 transition={{ duration: 0.4 }}
                 className="break-inside-avoid relative overflow-hidden cursor-hover group block w-full mb-5"
               >
-                {item.cat === "video" ? (
+                {item.cat === "videos" ? (
                   <div className="relative w-full aspect-video overflow-hidden bg-[#0e0e0e]">
                     <PortfolioMedia
                       item={item}
@@ -226,6 +280,7 @@ export default function Portfolio() {
             ))}
           </AnimatePresence>
         </div>
+        )}
       </section>
 
       {lightboxImg && (

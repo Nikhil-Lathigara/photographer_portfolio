@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -12,6 +12,7 @@ import Portfolio from "@/components/Portfolio";
 import ParallaxBreak from "@/components/ParallaxBreak";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
+import BookingCTA from "@/components/BookingCTA";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -20,8 +21,6 @@ const ThreeBackground = dynamic(() => import("@/components/ThreeBackground"), {
 });
 
 export default function Home() {
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
-
   useEffect(() => {
     AOS.init({
       duration: 880,
@@ -29,16 +28,11 @@ export default function Home() {
       once: true,
       offset: 50,
     });
-
-    // Check screen height after mount
-    if (typeof window !== "undefined") {
-      setIsLargeScreen(window.screen.height > 1000);
-    }
   }, []);
 
   return (
     <main className="relative w-full overflow-hidden">
-      {isLargeScreen && <ThreeBackground />}
+      <ThreeBackground />
       <Navbar />
       <Hero />
       <Marquee />
@@ -47,6 +41,7 @@ export default function Home() {
       <Services />
       <About />
       <Testimonials />
+      <BookingCTA />
       <Contact />
       <Footer />
     </main>

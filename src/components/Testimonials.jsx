@@ -7,10 +7,10 @@ export default function Testimonials() {
     <section id="testimonials" className="relative z-10 py-[130px] pl-7 md:pl-14 bg-ink overflow-hidden border-t border-gold/5">
       <div data-aos="fade-up" className="pr-7 md:pr-14">
         <p className="font-fm text-[10px] tracking-[0.3em] text-gold uppercase mb-3.5">
-          Kind Words
+          Client Reviews
         </p>
         <h2 className="font-fd text-[clamp(34px,4.5vw,68px)] font-light leading-none tracking-tight">
-          Clients <em className="italic text-gold">speak</em>
+          What clients <em className="italic text-gold">remember</em>
         </h2>
       </div>
 

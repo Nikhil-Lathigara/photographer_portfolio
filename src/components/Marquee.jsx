@@ -1,21 +1,11 @@
 "use client";
 import React from 'react';
-
-const mqItems = [
-  "Editorial Photography",
-  "Cinematic Video",
-  "Fine Art Prints",
-  "Fashion Campaigns",
-  "Landscape Series",
-  "Documentary Work",
-  "Art Direction",
-  "Visual Storytelling",
-];
+import { marqueeItems } from "@/lib/data";
 
 export default function Marquee() {
   const content = (
     <>
-      {mqItems.map((item, idx) => (
+      {marqueeItems.map((item, idx) => (
         <span
           key={idx}
           className="font-fd text-[17px] font-light italic text-ink px-8 shrink-0 flex items-center"

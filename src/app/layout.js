@@ -6,7 +6,7 @@ const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"]
+  style: ["normal", "italic"],
 });
 
 const syne = Syne({
@@ -19,19 +19,20 @@ const spaceMono = Space_Mono({
   variable: "--font-space-mono",
   subsets: ["latin"],
   weight: ["400", "700"],
-  style: ["normal", "italic"]
+  style: ["normal", "italic"],
 });
 
 export const metadata = {
-  title: "LUMINA — Visual Artist Portfolio",
-  description: "Visual Artist & Photographer — Est. 2014",
+  title: "LUMINA - Photographer Portfolio",
+  description: "Wedding, portrait, event, fashion, and brand photography portfolio.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${cormorant.variable} ${syne.variable} ${spaceMono.variable} antialiased bg-ink text-paper font-fd selection:bg-gold selection:text-ink overflow-x-hidden`}
+        suppressHydrationWarning
       >
         {/* <CustomCursor /> */}
         {children}

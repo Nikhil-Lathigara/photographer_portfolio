@@ -17,10 +17,10 @@ export default function Services() {
     <section id="services" className="relative z-10 py-[130px] px-7 md:px-14 bg-[#0e0d0b]">
       <div data-aos="fade-up">
         <p className="font-fm text-[10px] tracking-[0.3em] text-gold uppercase mb-3.5">
-          What I Do
+          Services
         </p>
         <h2 className="font-fd text-[clamp(34px,4.5vw,68px)] font-light leading-none tracking-tight">
-          Creative <em className="italic text-gold">disciplines</em>
+          Sessions for <em className="italic text-gold">every story</em>
         </h2>
       </div>
 

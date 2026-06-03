@@ -1,6 +1,6 @@
 "use client";
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -9,13 +9,13 @@ export default function Footer() {
         LUMINA
       </div>
       <div className="font-fm text-[9px] tracking-[0.15em] text-mist uppercase">
-        © 2025 Arielle Voss — All Rights Reserved
+        2026 Arielle Voss - Photography Portfolio
       </div>
       <div className="flex gap-6">
-        {["Instagram", "Behance", "VSCO", "LinkedIn"].map((social) => (
+        {["Instagram", "Behance", "VSCO", "Email"].map((social) => (
           <Link
             key={social}
-            href="#"
+            href={social === "Email" ? "mailto:hello@lumina.studio" : "#"}
             className="font-fm text-[9px] tracking-[0.15em] text-mist no-underline uppercase transition-colors duration-300 hover:text-gold cursor-hover"
           >
             {social}
